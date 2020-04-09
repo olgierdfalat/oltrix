@@ -5,7 +5,6 @@ custom:
   s3Sync:
     - bucketName: ${self:provider.stage}-oltrix-frontend
       localDir: dist/
-      bucketPrefix: oltrix-frontend/  
 
 plugins:
   - serverless-plugin-typescript
@@ -35,7 +34,10 @@ resources:
     ClientBucket:
       Type: AWS::S3::Bucket
       Properties:
+        AccessControl: PublicRead
         BucketName: ${self:provider.stage}-oltrix-frontend
+        WebsiteConfiguration:
+          IndexDocument: index.html
   Outputs:
     ClientBucketKey:
       Value: !Ref ClientBucket          
