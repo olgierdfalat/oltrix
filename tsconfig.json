@@ -33,7 +33,7 @@
     "strictNullChecks": true,
     "strictPropertyInitialization": false,
     "suppressImplicitAnyIndexErrors": false,
-    "target": "ES2020"
+    "target": "ES2017"
   },
   "compileOnSave": false,
   "include": ["./**/*.ts"],

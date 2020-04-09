@@ -2,13 +2,21 @@ service:
   name: oltrix
 
 custom:
+  s3Sync:
+    - bucketName: ${self:provider.stage}-oltrix-frontend
+      localDir: dist/
+      bucketPrefix: oltrix-frontend/  
 
 plugins:
   - serverless-plugin-typescript
+  - serverless-s3-sync
 
 provider:
   name: aws
   runtime: nodejs12.x
+  stage: ${opt:stage, 'dev'}
+  region: eu-central-1
+  profile: serverless
   apiGateway:
     minimumCompressionSize: 1024 # Enable gzip compression for responses > 1 KB
   environment:
@@ -16,8 +24,18 @@ provider:
 
 functions:
   hello:
-    handler: handler.hello
+    handler: src/handlers/handler.hello
     events:
       - http:
           method: get
-          path: hello
+          path: /
+
+resources:
+  Resources:
+    ClientBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:provider.stage}-oltrix-frontend
+  Outputs:
+    ClientBucketKey:
+      Value: !Ref ClientBucket          
