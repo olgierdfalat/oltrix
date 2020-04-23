@@ -2,7 +2,9 @@ service:
   name: oltrix
 
 custom:
-  siteName: ${self:provider.stage}.oltrix.com
+  siteName: oltrix.com
+  aliasHostedZoneId: ****    # us-east-1
+  aliasDNSName: s3.eu-central-1.amazonaws.com 
   webS3Bucket: ${self:provider.stage}-oltrix-frontend
   s3Sync:
     - bucketName: ${self:custom.webS3Bucket}
@@ -55,6 +57,16 @@ resources:
               Action:
               - s3:GetObject
               Resource: arn:aws:s3:::${self:custom.webS3Bucket}/*
+    DnsRecord:
+      Type: "AWS::Route53::RecordSet"
+      Properties:
+        AliasTarget:
+          DNSName: ${self:custom.aliasDNSName}
+          HostedZoneId: ${self:custom.aliasHostedZoneId}
+        HostedZoneName: ${self:custom.siteName}.
+        Name:
+          Ref: WebAppS3Bucket
+        Type: 'A'              
   Outputs:
     WebAppS3BucketKey:
       Value: !Ref WebAppS3Bucket          

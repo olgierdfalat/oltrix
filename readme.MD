@@ -28,13 +28,14 @@ npm run test
 * S3 public access
 
 ## TODO:
-* integrate Route56
+* integrate Route53
+* move secure data to Secret Manager or private Github repository, start with: aliasHostedZoneId, aliasDNSName, webS3Bucket
+* support staging environments via Route53
+* integrate CloudFormation
 * SSL only
 * minimize JavaScript assets
-* integrate CloudFormation
 * select and integrate testing framework: Jest vs Mocha vs Ava
 * implement basic UI :)
-* if required integrate with Secret Manager
 * configure GitHub Actions for building and deploying
 
 #### Online useful Resources:
