@@ -2,8 +2,10 @@ service:
   name: oltrix
 
 custom:
+  siteName: ${self:provider.stage}.oltrix.com
+  webS3Bucket: ${self:provider.stage}-oltrix-frontend
   s3Sync:
-    - bucketName: ${self:provider.stage}-oltrix-frontend
+    - bucketName: ${self:custom.webS3Bucket}
       localDir: dist/
 
 plugins:
@@ -31,13 +33,28 @@ functions:
 
 resources:
   Resources:
-    ClientBucket:
+    WebAppS3Bucket:
       Type: AWS::S3::Bucket
       Properties:
         AccessControl: PublicRead
-        BucketName: ${self:provider.stage}-oltrix-frontend
+        BucketName: ${self:custom.webS3Bucket}
         WebsiteConfiguration:
           IndexDocument: index.html
+          ErrorDocument: index.html
+    ## Specifying the policies to make sure all files inside the Bucket are available to CloudFront
+    WebAppS3BucketPolicy:
+      Type: AWS::S3::BucketPolicy
+      Properties:
+        Bucket:
+          Ref: WebAppS3Bucket
+        PolicyDocument:
+          Statement:
+            - Sid: PublicReadGetObject
+              Effect: Allow
+              Principal: "*"
+              Action:
+              - s3:GetObject
+              Resource: arn:aws:s3:::${self:custom.webS3Bucket}/*
   Outputs:
-    ClientBucketKey:
-      Value: !Ref ClientBucket          
+    WebAppS3BucketKey:
+      Value: !Ref WebAppS3Bucket          
