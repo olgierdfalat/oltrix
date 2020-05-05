@@ -3,8 +3,8 @@ service:
 
 custom:
   siteName: oltrix.com
-  aliasHostedZoneId: ****    # us-east-1
-  aliasDNSName: s3.eu-central-1.amazonaws.com 
+  aliasHostedZoneId: Z21DNDUVLTQW6Q #eu-central-1(Europe Frankfurt)
+  aliasDNSName: s3-website.eu-central-1.amazonaws.com
   webS3Bucket: ${self:provider.stage}-oltrix-frontend
   s3Sync:
     - bucketName: ${self:custom.webS3Bucket}

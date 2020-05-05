@@ -9,7 +9,7 @@ const App: React.FC = () => {
 
   return (
     <>
-      <div>Another Hello world!!!</div>
+      <div>Another Hello world!</div>
     </>
   )
 }

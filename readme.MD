@@ -40,10 +40,18 @@ npm run test
 
 #### Online useful Resources:
 
-* setup Static Website via Serverless:
+* Structure Environments Across AWS Accounts
+
+  https://serverless-stack.com/chapters/structure-environments-across-aws-accounts.html
+  
+* Setup Static Website via Serverless:
+
+  https://serverless-stack.com/chapters/share-route-53-domains-across-aws-accounts.html
 
   https://www.serverlessops.io/blog/static-websites-on-aws-s3-with-serverless-framework
+
+  https://github.com/tobilg/serverless-aws-static-websites
   
-* s3 bucket and policy
+* S3 bucket and policy
 
   https://github.com/serverless/examples/blob/master/aws-node-single-page-app-via-cloudfront/serverless.yml#L18
