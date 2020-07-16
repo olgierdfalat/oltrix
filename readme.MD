@@ -52,6 +52,13 @@ npm run test
 
   https://github.com/tobilg/serverless-aws-static-websites
   
-* S3 bucket and policy
+* S3 bucket policy and CloudFront settings
 
   https://github.com/serverless/examples/blob/master/aws-node-single-page-app-via-cloudfront/serverless.yml#L18
+
+
+
+https://www.serverless.com/learn/
+https://www.serverless.com/learn/courses/full-stack-application-development-on-aws/
+https://www.serverless.com/learn/courses/serverless-for-frontend-developers/ !
+https://www.serverless.com/learn/tutorial/amazon-route-53-domain-registration/ !

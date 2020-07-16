@@ -2,10 +2,11 @@ service:
   name: oltrix
 
 custom:
-  siteName: oltrix.com
+  stage: ${opt:stage, 'dev'}
+  siteName: oltrix.com #HOSTED ZONE ID
   aliasHostedZoneId: Z21DNDUVLTQW6Q #eu-central-1(Europe Frankfurt)
   aliasDNSName: s3-website.eu-central-1.amazonaws.com
-  webS3Bucket: ${self:provider.stage}-oltrix-frontend
+  webS3Bucket: ${self:custom.stage}.${self:custom.siteName}
   s3Sync:
     - bucketName: ${self:custom.webS3Bucket}
       localDir: dist/
